@@ -3,12 +3,12 @@ package cine;
 import anotacion.Programacion2;
 
 @Programacion2(
-        nombreAutor1 = "Ignacio",
-        apellidoAutor1 = "de las Alas-Pumariño Martínez",
-        emailUPMAutor1 = "i.dmartinez@alumnos.upm.es",
-        nombreAutor2 = "Adrián",
-        apellidoAutor2 = "",
-        emailUPMAutor2 = ""
+        nombreAutor1 = "Pablo",
+        apellidoAutor1 = "Beltrán de Casso",
+        emailUPMAutor1 = "p.beltran@alumnos.upm.es",
+        nombreAutor2 = "Iñigo",
+        apellidoAutor2 = "Aranguren Redondo",
+        emailUPMAutor2 = "i.aranguren@alumnos.upm.es"
 )
 
 /**
