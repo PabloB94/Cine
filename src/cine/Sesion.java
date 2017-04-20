@@ -1,5 +1,19 @@
 package cine;
 
+
+
+import anotacion.Programacion2;
+
+@Programacion2(
+        nombreAutor1 = "Pablo",
+        apellidoAutor1 = "Beltrán de Casso",
+        emailUPMAutor1 = "p.beltran@alumnos.upm.es",
+        nombreAutor2 = "Iñigo",
+        apellidoAutor2 = "Aranguren Redondo",
+        emailUPMAutor2 = "i.aranguren@alumnos.upm.es"
+)
+
+
 public class Sesion {
 
 
@@ -76,53 +90,53 @@ public class Sesion {
 
     }//recogerEntradas
 
-    public ButacasContiguas recomendarButacasContiguas (int noButacas){ //Método que dado un numero de butacas, recomienda la mejor posición dentro de la sala, primero buscando en la mitad trasera y luego en la mitad delantera
-        int butacasDisponibles = 0;
-        int vaux = 0;
-        boolean done = false;
+    public ButacasContiguas recomendarButacasContiguas (int noButacas){ //Funcion que recomienda un número dado de butacas según las especificaciones dadas
+        boolean finalizado = false;//Variable para evitar recorrer ambos bucles innecesariamente
+        int[] butacasEscogidas = new int[3]; //Por las especificaciones del lenguaje, este array está por defecto inicializado con todos sus elementos a 0.
         ButacasContiguas butacasContiguas = null;
-        for (int i = (estadoAsientos.length+1)/2+1; i <= estadoAsientos.length && butacasDisponibles != noButacas && !done; i++){
-            for (int j = estadoAsientos[0].length-1; j >= 1; j--){
-                if (estadoAsientos[i-1][j] == 0){
-                    for (int k = 0; k < noButacas ;k++){
-                        if (j-k >= 0 && estadoAsientos[i-1][j-k] == 0){
-                            butacasDisponibles++;
-                        }else{
-                            butacasDisponibles=0;
-                        }
-                        vaux = j-k+1;
-                    }
-                }
-                if (butacasDisponibles == noButacas){
-                    ButacasContiguas aux = new ButacasContiguas(i,vaux,noButacas);
-                    butacasContiguas = aux;
-                    done = !done;
-                }
-            } //Búsqueda en la mitad trasera de la sala
+        for (int filaActual = (estadoAsientos.length + 1) / 2 + 1; filaActual <= estadoAsientos.length  && !finalizado; filaActual++){//Bucle para buscar en la mitad posterior de la sala
+            butacasEscogidas = buscarButacas(noButacas, filaActual);
+            if (butacasEscogidas[2] == noButacas){
+                finalizado = !finalizado;
+            }
         }
-        for (int i = (estadoAsientos.length+1)/2; i > 0 && butacasDisponibles != noButacas && !done; i--){
-            for (int j = estadoAsientos[0].length-1; j >= 1; j--){
-                if (estadoAsientos[i-1][j] == 0){
-                    for (int k = 0; k < noButacas ;k++){
-                        if (j-k >= 0 && estadoAsientos[i-1][j-k] == 0){
-                            butacasDisponibles++;
-                        }else{
-                            butacasDisponibles=0;
-                        }
-                        vaux = j-k+1;
-                    }
-                }
-                if (butacasDisponibles == noButacas){
-                    ButacasContiguas aux = new ButacasContiguas(i,vaux,noButacas);
-                    butacasContiguas = aux;
-                    done = !done;
-                }
-            }//Búsqueda en la mitad delantera de la sala;
+        for (int filaActual = (estadoAsientos.length + 1) / 2; filaActual > 0  && !finalizado; filaActual--){//Bucle para buscar en la mitad anterior de la sala
+            butacasEscogidas = buscarButacas(noButacas, filaActual);
+            if (butacasEscogidas[2] == noButacas){
+                finalizado = !finalizado;
+            }
+        }
+        if(finalizado){
+            ButacasContiguas aux = new ButacasContiguas(butacasEscogidas[0],butacasEscogidas[1],butacasEscogidas[2]);
+            butacasContiguas = aux;
         }
         return butacasContiguas;
     }//recomendarButacasContiguas
 
-    public void comprarEntradasRecomendadas (ButacasContiguas butacas){ //Funcion para comprar entradas recomendadas por la funcion recomendarButacasContiguas
+    private int[] buscarButacas (int noButacas, int filaActual){
+        int libres = 0;
+        boolean asientosJuntos = true;
+        int[] escogidas = new int[3];
+        for (int columnaActual = estadoAsientos[0].length - 1; columnaActual >= 1 && libres != noButacas; columnaActual--){
+            if (estadoAsientos[filaActual - 1][columnaActual] == 0){
+                for (int asientosContiguos = 0; asientosContiguos < noButacas && asientosJuntos; asientosContiguos++){
+                    if (columnaActual - asientosContiguos >= 0 && estadoAsientos[filaActual - 1][columnaActual - asientosContiguos] == 0){
+                        libres++;
+                        asientosJuntos = true;
+                    }else{
+                        libres = 0;
+                        asientosJuntos = false;
+                    }
+                    escogidas[0] = filaActual;
+                    escogidas[1] = columnaActual - asientosContiguos + 1;
+                    escogidas[2] = noButacas;
+                }
+            }
+        }
+        return escogidas;
+    }
+
+    public void comprarEntradasRecomendadas (ButacasContiguas butacas){ //Compra las entradas recomendadas por el método recomendarButacasContiguas
         for (int i = 0; i < butacas.getNoButacas(); i++){
             estadoAsientos[butacas.getFila()-1][butacas.getColumna()-1+i] = sigIdCompra;
         }
@@ -134,4 +148,4 @@ public class Sesion {
         return this.hora.equals(obj.hora);
 
     } //equals
-}//Class Sesion
+}//Clase Sesion

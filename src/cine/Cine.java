@@ -1,6 +1,17 @@
 package cine;
 
 
+import anotacion.Programacion2;
+
+@Programacion2(
+        nombreAutor1 = "Pablo",
+        apellidoAutor1 = "Beltrán de Casso",
+        emailUPMAutor1 = "p.beltran@alumnos.upm.es",
+        nombreAutor2 = "Iñigo",
+        apellidoAutor2 = "Aranguren Redondo",
+        emailUPMAutor2 = "i.aranguren@alumnos.upm.es"
+)
+
 public class Cine {
 
     private String nombre;

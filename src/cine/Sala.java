@@ -2,6 +2,17 @@ package cine;
 
 import list.ArrayList;
 
+
+@Programacion2(
+        nombreAutor1 = "Pablo",
+        apellidoAutor1 = "Beltrán de Casso",
+        emailUPMAutor1 = "p.beltran@alumnos.upm.es",
+        nombreAutor2 = "Iñigo",
+        apellidoAutor2 = "Aranguren Redondo",
+        emailUPMAutor2 = "i.aranguren@alumnos.upm.es"
+)
+
+
 public class Sala {
 
     private String pelicula;
