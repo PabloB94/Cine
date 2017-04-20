@@ -1,20 +1,5 @@
 package cine;
 
-
-import anotacion.Programacion2;
-
-@Programacion2(
-        nombreAutor1 = "Ignacio",
-        apellidoAutor1 = "de las Alas-Pumariño Martínez",
-        emailUPMAutor1 = "i.dmartinez@alumnos.upm.es",
-        nombreAutor2 = "Adrián",
-        apellidoAutor2 = "",
-        emailUPMAutor2 = ""
-)
-
-/**
- * Created by Nacho on 06/04/2017.
- */
 public class Sesion {
 
 
@@ -29,31 +14,31 @@ public class Sesion {
         this.estadoAsientos = new int[filas][columnas];
         this.asientosDisponibles = filas * columnas;
         this.sigIdCompra = 1;
-    } //De constructor
+    } //Constructor Sesion
 
-    public void comprarEntrada (int fila, int columna){ //Método para comprar entradas en una sesión
+    public void comprarEntrada (int fila, int columna){ //Funcion para comprar una entrada
         estadoAsientos[fila-1][columna-1] = sigIdCompra;
         sigIdCompra++;
         asientosDisponibles--;
 
-    }//De comprarEntrada
+    }//comprarEntrada
 
-    public int getIdEntrada (int fila, int columna){ //Devuelve el id de venta asociado a una fila y una columna
+    public int getIdEntrada (int fila, int columna){ //Funcion que devuelve el id de la entrada
         return estadoAsientos[fila-1][columna-1];
 
-    }//De getIdEntrada
+    }//getIdEntrada
 
-    public int getButacasDisponiblesSesion (){ //Devuelve el número de butacas disponibles en la sesión
+    public int getButacasDisponiblesSesion (){ //Funcion que devuelve el numero de butacas disponibles en una sesion
         return asientosDisponibles;
 
-    }//De getButacasDisponiblesSesion
+    }//getButacasDisponiblesSesion
 
-    public String getHora (){ //Devuelve la hora de una sesión
+    public String getHora (){ //Funcion que devuelve la hora de una sesion
         return hora;
 
-    }//De getHora
+    }//getHora
 
-    public char[][] getEstadoSesion (){ //Devuelve la matriz asociada al estado de una sesión donde un asiento vacío está representado por "O" y un asiento ocupado por "#"
+    public char[][] getEstadoSesion (){ //Funcion que devuelve una matriz que representa el estado de la sesion
         char[][] estadoSesion = new char[estadoAsientos.length][estadoAsientos[0].length];
         for (int i = 0; i < estadoAsientos.length; i++){
             for (int j = 0; j < estadoAsientos[0].length; j++){
@@ -67,29 +52,29 @@ public class Sesion {
         }
         return estadoSesion;
 
-    }//De getEstadoSesion
+    }//getEstadoSesion
 
-    public String recogerEntradas (int id){ //Dado un id de venta, devuelve un String con la hora de la sesión y los asientos asociados a ese id
+    public String recogerEntradas (int id){ //Funcion que devuelve la informacion de una entrada
         String entrada = new String(hora + "+");
-        String aux = "";
+        String otro = "";
         for (int i = 0; i < estadoAsientos.length; i++){
             for (int j = 0; j < estadoAsientos[0].length; j++){
                 if (estadoAsientos[i][j] == id){
                     String asientos = (i+1) + "," + (j+1) + "+";
-                    aux = aux + asientos;
+                    otro = otro + asientos;
                 }
             }
         }
 
-        if (aux.equals("")){
+        if (otro.equals("")){
             return null;
         }
 
         else{
-            return entrada + aux;
+            return entrada + otro;
         }
 
-    }//De recogerEntradas
+    }//recogerEntradas
 
     public ButacasContiguas recomendarButacasContiguas (int noButacas){ //Método que dado un numero de butacas, recomienda la mejor posición dentro de la sala, primero buscando en la mitad trasera y luego en la mitad delantera
         int butacasDisponibles = 0;
@@ -135,18 +120,18 @@ public class Sesion {
             }//Búsqueda en la mitad delantera de la sala;
         }
         return butacasContiguas;
-    }//De recomendarButacasContiguas
+    }//recomendarButacasContiguas
 
-    public void comprarEntradasRecomendadas (ButacasContiguas butacas){ //Compra las entradas recomendadas por el método recomendarButacasContiguas
+    public void comprarEntradasRecomendadas (ButacasContiguas butacas){ //Funcion para comprar entradas recomendadas por la funcion recomendarButacasContiguas
         for (int i = 0; i < butacas.getNoButacas(); i++){
             estadoAsientos[butacas.getFila()-1][butacas.getColumna()-1+i] = sigIdCompra;
         }
         sigIdCompra++;
         asientosDisponibles = asientosDisponibles - butacas.getNoButacas();
-    }//De comprarEntradasRecomendadas
+    }//comprarEntradasRecomendadas
 
-    public boolean equals (Sesion obj){ //Método que comprueba si dos sesiones son iguales. Se considera que si lo son si coincide sus atributos hora
+    public boolean equals (Sesion obj){ //Funcion para comparar dos sesiones
         return this.hora.equals(obj.hora);
 
-    } //De equals
-}//De Sesion
+    } //equals
+}//Class Sesion
