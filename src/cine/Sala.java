@@ -1,20 +1,7 @@
 package cine;
 
-import anotacion.Programacion2;
 import list.ArrayList;
 
-@Programacion2(
-        nombreAutor1 = "Ignacio",
-        apellidoAutor1 = "de las Alas-Pumariño Martínez",
-        emailUPMAutor1 = "i.dmartinez@alumnos.upm.es",
-        nombreAutor2 = "Adrián",
-        apellidoAutor2 = "",
-        emailUPMAutor2 = ""
-)
-
-/**
- * Created by Nacho on 5/4/17.
- */
 public class Sala {
 
     private String pelicula;
@@ -26,54 +13,54 @@ public class Sala {
 
         this.pelicula = pelicula;
         this.sesiones = new ArrayList();
-        int pos = 0;
+        int posicion = 0;
         for (int i = 0; i < horasSesiones.length; i++){
             Sesion sesion = new Sesion(horasSesiones[i], filas, columnas);
             for (int j = 0; j < sesiones.size(); j++){
                 if (sesiones.get(j).getHora().compareTo(horasSesiones[i]) < 0){
-                    pos++;
+                    posicion++;
                 }
             }
-            sesiones.add(pos, sesion);
+            sesiones.add(posicion, sesion);
         }
         this.filas = filas;
         this.columnas = columnas;
 
-    }//De constructor
+    }//Constructor Sala
 
-    public void comprarEntrada (int sesion, int fila, int columna){ //Método para comprar entradas en una sesión dada
+    public void comprarEntrada (int sesion, int fila, int columna){ //Funcion para comprar una entrada
         sesiones.get(sesion).comprarEntrada(fila, columna);
 
-    }//De comprarEntrada
+    }//comprarEntrada
 
-    public int getIdEntrada (int sesion, int fila, int columna){ //Devuelve el id de venta asociado a una sesión, fila y  columna
+    public int getIdEntrada (int sesion, int fila, int columna){ //Funcion que devuelve el id de la entrada
         return sesiones.get(sesion).getIdEntrada(fila, columna);
 
-    }//De getIdEntrada
+    }//getIdEntrada
 
-    public String[] getHorasDeSesionesDeSala (){ //Método que devuelve las horas de sesiones asociadas a una sala
+    public String[] getHorasDeSesionesDeSala (){ //Funcion que devuelve las horas de las sesiones en una sala
         String[] horasSesiones = new String[sesiones.size()];
-        String aux;
+        String otro;
         for (int i = 0; i < sesiones.size(); i++){
-            aux = sesiones.get(i).getHora();
-            horasSesiones[i] = aux;
+            otro = sesiones.get(i).getHora();
+            horasSesiones[i] = otro;
         }
 
         return horasSesiones;
 
-    }//De getHorasDeSesionesDeSala
+    }//getHorasDeSesionesDeSala
 
-    public char[][] getEstadoSesion (int sesion){ //Devuelve la matriz asociada al estado de una sesión donde un asiento vacío está representado por "O" y un asiento ocupado por "#"
+    public char[][] getEstadoSesion (int sesion){ //Funcion que devuelve una matriz que representa el estado de la sesion
         return sesiones.get(sesion).getEstadoSesion();
 
-    }//De getEstadoSesion
+    }//getEstadoSesion
 
-    public String getPelicula (){ //Devuelve la película asociada a una sala
+    public String getPelicula (){ //Funcion que devuelve las peliculas que hay en el cine
         return pelicula;
 
-    }//De getPelicula
+    }//getPelicula
 
-    public String recogerEntradas (int id, int sesion){ //Dado un id de venta y una sesión, devuelve un String con la película, la hora de la sesión y los asientos asociados a ese id
+    public String recogerEntradas (int id, int sesion){ //Funcion que devuelve la informacion de una entrada
         if (this.sesiones.get(sesion).recogerEntradas(id) == null){
             return null;
 
@@ -82,37 +69,37 @@ public class Sala {
             return this.pelicula + "@" + this.sesiones.get(sesion).recogerEntradas(id);
         }
 
-    }//De recogerEntradas
+    }//recogerEntradas
 
-    public int getButacasDisponiblesSesion (int sesion){ //Devuelve el número de butacas disponibles para una sesión
+    public int getButacasDisponiblesSesion (int sesion){ //Funcion que devuelve el numero de butacas disponibles en una sesion
         return sesiones.get(sesion).getButacasDisponiblesSesion();
 
-    }//De getButacasDisponiblesSesion
+    }//getButacasDisponiblesSesion
 
-    public ButacasContiguas recomendarButacasContiguas (int noButacas, int sesion){ //Método recomendar butacas para una sesión dada
+    public ButacasContiguas recomendarButacasContiguas (int noButacas, int sesion){ //Funcion para recomendar butacas contiguas
         return sesiones.get(sesion).recomendarButacasContiguas(noButacas);
 
-    }//De recomendarButacasContiguas
+    }//recomendarButacasContiguas
 
-    public void comprarEntradasRecomendadas (int sesion, ButacasContiguas butacas){ //Compra las entradas recomendadas por el método recomendarButacasContiguas
+    public void comprarEntradasRecomendadas (int sesion, ButacasContiguas butacas){ //Funcion para comprar entradas recomendadas por la funcion recomendarButacasContiguas
         sesiones.get(sesion).comprarEntradasRecomendadas(butacas);
 
-    }//De comprarEntradasRecomendadas
+    }//comprarEntradasRecomendadas
 
-    public void incluirSesion (String horaSesion){ //Añade una sesión a una sala
-        boolean done = false;
-        int pos = 0;
+    public void incluirSesion (String horaSesion){ //Funcion para añadir una nueva sesion
+        
+        int posicion = 0;
         Sesion sesion = new Sesion(horaSesion, filas, columnas);
         for (int i = 0; i < sesiones.size(); i++){
             if (sesiones.get(i).getHora().compareTo(horaSesion) < 0){
-                pos++;
+                posicion++;
             }
 
         }
-        sesiones.add(pos, sesion);
-    }//De incluirSesion
+        sesiones.add(posicion, sesion);
+    }//incluirSesion
 
-    public void borrarSesion (String horaSesion){ //Elimina una sesión de una sala
+    public void borrarSesion (String horaSesion){ //Funcion para eliminar una sesion
         int i = 0;
         while (i < sesiones.size()){
             if (sesiones.get(i).getHora().equals(horaSesion)){
@@ -120,5 +107,7 @@ public class Sala {
             }
             i++;
         }
-    }//De borrarSesion
-}//De Sala
+        
+    }//borrarSesion
+    
+}//Class Sala
