@@ -6,9 +6,9 @@ import anotacion.Programacion2;
 
 @Programacion2(
         nombreAutor1 = "Pablo",
-        apellidoAutor1 = "Beltrán de Casso",
+        apellidoAutor1 = "Beltran de Casso",
         emailUPMAutor1 = "p.beltran@alumnos.upm.es",
-        nombreAutor2 = "Iñigo",
+        nombreAutor2 = "Inigo",
         apellidoAutor2 = "Aranguren Redondo",
         emailUPMAutor2 = "i.aranguren@alumnos.upm.es"
 )
@@ -85,7 +85,7 @@ public class Sesion {
         }
 
         else{
-            return entrada + otro;
+            return entrada + otro + '"';
         }
 
     }//recogerEntradas
@@ -145,6 +145,7 @@ public class Sesion {
     }//comprarEntradasRecomendadas
 
     public boolean equals (Sesion obj){ //Funcion para comparar dos sesiones
+    	//Revisar
         return this.hora.equals(obj.hora);
 
     } //equals

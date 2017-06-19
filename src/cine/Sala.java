@@ -1,13 +1,13 @@
 package cine;
 
 import list.ArrayList;
-
+import anotacion.Programacion2;
 
 @Programacion2(
         nombreAutor1 = "Pablo",
-        apellidoAutor1 = "Beltrán de Casso",
+        apellidoAutor1 = "Beltran de Casso",
         emailUPMAutor1 = "p.beltran@alumnos.upm.es",
-        nombreAutor2 = "Iñigo",
+        nombreAutor2 = "Inigo",
         apellidoAutor2 = "Aranguren Redondo",
         emailUPMAutor2 = "i.aranguren@alumnos.upm.es"
 )
@@ -23,9 +23,9 @@ public class Sala {
     public Sala (String pelicula, String[] horasSesiones, int filas, int columnas){
 
         this.pelicula = pelicula;
-        this.sesiones = new ArrayList();
-        int posicion = 0;
+        this.sesiones = new ArrayList<Sesion>();        
         for (int i = 0; i < horasSesiones.length; i++){
+        	int posicion = 0;
             Sesion sesion = new Sesion(horasSesiones[i], filas, columnas);
             for (int j = 0; j < sesiones.size(); j++){
                 if (sesiones.get(j).getHora().compareTo(horasSesiones[i]) < 0){
