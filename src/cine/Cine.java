@@ -51,7 +51,7 @@ public class Cine {
     }//getHorasDeSesionesDeSala
 
     public String recogerEntradas (int id, int sala, int sesion){ //Funcion que devuelve la informacion de una entrada
-        if (this.salas[sala-1].recogerEntradas(id, sesion-1) == null){//Revisar print
+        if (this.salas[sala-1].recogerEntradas(id, sesion-1) == null){
             return null;
         }
         else {
