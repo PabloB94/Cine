@@ -45,7 +45,7 @@ public class Cine {
         return Peliculas;
 
     }//getPeliculas
-    //Mirar los indices del array de sesiones
+    
     public String[] getHorasDeSesionesDeSala (int sala){ //Funcion que devuelve las horas de las sesiones en una sala
     	return this.salas[sala-1].getHorasDeSesionesDeSala();
     }//getHorasDeSesionesDeSala

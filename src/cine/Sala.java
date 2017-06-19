@@ -51,10 +51,10 @@ public class Sala {
 
     public String[] getHorasDeSesionesDeSala (){ //Funcion que devuelve las horas de las sesiones en una sala
         String[] horasSesiones = new String[sesiones.size()];
-        String otro;
+        String hora;
         for (int i = 0; i < sesiones.size(); i++){
-            otro = sesiones.get(i).getHora();
-            horasSesiones[i] = otro;
+            hora = sesiones.get(i).getHora();
+            horasSesiones[i] = hora;
         }
 
         return horasSesiones;
