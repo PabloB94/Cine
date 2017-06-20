@@ -55,7 +55,7 @@ public class Cine {
             return null;
         }
         else {
-            return '"' + this.nombre + "@" + this.salas[sala - 1].recogerEntradas(id, sesion - 1);
+            return this.nombre + "@" + this.salas[sala - 1].recogerEntradas(id, sesion - 1);
         }
     }//recogerEntradas
 

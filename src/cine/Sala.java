@@ -97,7 +97,7 @@ public class Sala {
 
     }//comprarEntradasRecomendadas
 
-    public void incluirSesion (String horaSesion){ //Funcion para añadir una nueva sesion
+    public void incluirSesion (String horaSesion){ //Funcion para anadir una nueva sesion
         
         int posicion = 0;
         Sesion sesion = new Sesion(horaSesion, filas, columnas);

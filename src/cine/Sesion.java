@@ -85,7 +85,7 @@ public class Sesion {
         }
 
         else{
-            return entrada + otro + '"';
+            return entrada + otro;
         }
 
     }//recogerEntradas
