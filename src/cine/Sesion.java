@@ -129,7 +129,7 @@ public class Sesion {
                     }
                     escogidas[0] = filaActual;
                     escogidas[1] = columnaActual - asientosContiguos + 1;
-                    escogidas[2] = noButacas;
+                    escogidas[2] = libres;
                 }
             }
         }
@@ -146,7 +146,7 @@ public class Sesion {
 
     public boolean equals (Sesion obj){ //Funcion para comparar dos sesiones
     	//Revisar
-        return this.hora.equals(obj.hora);
+        return this.hora.equals(obj.getHora());
 
     } //equals
 }//Clase Sesion

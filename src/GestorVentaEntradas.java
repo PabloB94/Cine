@@ -137,9 +137,9 @@ public class GestorVentaEntradas {
 	public static void main(String[] args) {		
 
 		// creamos un cine con 2 salas (con 2 sesiones) para probar las operaciones
-		String[] horasSesiones = {"18:00", "22:00", "20:00"};
+		String[] horasSesiones = {"18:00", "22:00"};
 		Sala[] salas = {new Sala("Tiburon", horasSesiones, 9, 5), 
-				new Sala("Tron", horasSesiones, 2, 2), new Sala("Movie 43", horasSesiones, 10, 8)};
+				new Sala("Tron", horasSesiones, 2, 2)};
 		Cine cine = new Cine("CinemaVintage", salas);	
 
 		// este programa puede utilizar solo las operaciones obligatorias o todas
