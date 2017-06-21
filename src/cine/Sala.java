@@ -27,7 +27,7 @@ public class Sala {
         for (int i = 0; i < horasSesiones.length; i++){
         	int posicion = 0;
             Sesion sesion = new Sesion(horasSesiones[i], filas, columnas);
-            for (int j = 0; j < sesiones.size(); j++){
+            for (int j = 0; sesiones.size() > j && j < sesiones.size(); j++){
                 if (sesiones.get(j).getHora().compareTo(horasSesiones[i]) < 0){
                     posicion++;
                 }
@@ -40,13 +40,17 @@ public class Sala {
     }//Constructor Sala
 
     public void comprarEntrada (int sesion, int fila, int columna){ //Funcion para comprar una entrada
-        sesiones.get(sesion).comprarEntrada(fila, columna);
-
+    	if(sesiones.size() > sesion){
+    		sesiones.get(sesion).comprarEntrada(fila, columna);
+    	}
     }//comprarEntrada
 
     public int getIdEntrada (int sesion, int fila, int columna){ //Funcion que devuelve el id de la entrada
-        return sesiones.get(sesion).getIdEntrada(fila, columna);
-
+    	if(sesiones.size() > sesion){
+    		return sesiones.get(sesion).getIdEntrada(fila, columna);
+    	}else{
+    		return 0;
+    	}
     }//getIdEntrada
 
     public String[] getHorasDeSesionesDeSala (){ //Funcion que devuelve las horas de las sesiones en una sala
@@ -102,8 +106,10 @@ public class Sala {
         int posicion = 0;
         Sesion sesion = new Sesion(horaSesion, filas, columnas);
         for (int i = 0; i < sesiones.size(); i++){
-            if (sesiones.get(i).getHora().compareTo(horaSesion) < 0){
-                posicion++;
+            if (sesiones.size() == 0 || sesiones.get(i).getHora().compareTo(horaSesion) >= 0){
+            	i = sesiones.size();//Forzamos la salida del bucle
+            }else{
+            	posicion++;
             }
 
         }
@@ -113,7 +119,9 @@ public class Sala {
     public void borrarSesion (String horaSesion){ //Funcion para eliminar una sesion
         int i = 0;
         while (i < sesiones.size()){
-            if (sesiones.get(i).getHora().equals(horaSesion)){
+        	if(sesiones.size() == 0){
+        		i = sesiones.size() + 1;//Forzamos salida
+        	}else if (sesiones.get(i).getHora().equals(horaSesion)){
                 sesiones.removeElementAt(i);
             }
             i++;

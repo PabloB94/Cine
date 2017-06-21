@@ -146,7 +146,6 @@ public class Sesion {
 
     public boolean equals (Sesion obj){ //Funcion para comparar dos sesiones
     	//Revisar
-        return this.hora.equals(obj.getHora());
-
+        return this.getHora().compareTo(obj.getHora()) == 0;
     } //equals
 }//Clase Sesion
