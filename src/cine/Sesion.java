@@ -144,8 +144,13 @@ public class Sesion {
         asientosDisponibles = asientosDisponibles - butacas.getNoButacas();
     }//comprarEntradasRecomendadas
 
-    public boolean equals (Sesion obj){ //Funcion para comparar dos sesiones
-    	//Revisar
-        return this.getHora().compareTo(obj.getHora()) == 0;
+    public boolean equals (Object sesion){ //Funcion para comparar dos sesiones
+    	Sesion aux = null;
+    	if (sesion instanceof Sesion && sesion != null){
+    		aux = (Sesion) sesion;
+    		return this.getHora().equals(aux.getHora());
+    	}else{
+    		return false;
+    	}
     } //equals
 }//Clase Sesion
