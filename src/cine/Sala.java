@@ -40,14 +40,14 @@ public class Sala {
     }//Constructor Sala
 
     public void comprarEntrada (int sesion, int fila, int columna){ //Funcion para comprar una entrada
-    	if(sesiones.size() > sesion){
-    		sesiones.get(sesion).comprarEntrada(fila, columna);
+    	if(sesiones.size() > sesion - 1){
+    		sesiones.get(sesion - 1).comprarEntrada(fila, columna);
     	}
     }//comprarEntrada
 
     public int getIdEntrada (int sesion, int fila, int columna){ //Funcion que devuelve el id de la entrada
-    	if(sesiones.size() > sesion){
-    		return sesiones.get(sesion).getIdEntrada(fila, columna);
+    	if(sesiones.size() > sesion - 1){
+    		return sesiones.get(sesion - 1).getIdEntrada(fila, columna);
     	}else{
     		return 0;
     	}
@@ -66,7 +66,7 @@ public class Sala {
     }//getHorasDeSesionesDeSala
 
     public char[][] getEstadoSesion (int sesion){ //Funcion que devuelve una matriz que representa el estado de la sesion
-        return sesiones.get(sesion).getEstadoSesion();
+        return sesiones.get(sesion - 1).getEstadoSesion();
 
     }//getEstadoSesion
 
@@ -76,7 +76,7 @@ public class Sala {
     }//getPelicula
 
     public String recogerEntradas (int id, int sesion){ //Funcion que devuelve la informacion de una entrada
-        if (this.sesiones.get(sesion).recogerEntradas(id) == null){
+        if (this.sesiones.get(sesion - 1).recogerEntradas(id) == null){
             return null;
 
         }
@@ -87,17 +87,17 @@ public class Sala {
     }//recogerEntradas
 
     public int getButacasDisponiblesSesion (int sesion){ //Funcion que devuelve el numero de butacas disponibles en una sesion
-        return sesiones.get(sesion).getButacasDisponiblesSesion();
+        return sesiones.get(sesion - 1).getButacasDisponiblesSesion();
 
     }//getButacasDisponiblesSesion
 
     public ButacasContiguas recomendarButacasContiguas (int noButacas, int sesion){ //Funcion para recomendar butacas contiguas
-        return sesiones.get(sesion).recomendarButacasContiguas(noButacas);
+        return sesiones.get(sesion - 1).recomendarButacasContiguas(noButacas);
 
     }//recomendarButacasContiguas
 
     public void comprarEntradasRecomendadas (int sesion, ButacasContiguas butacas){ //Funcion para comprar entradas recomendadas por la funcion recomendarButacasContiguas
-        sesiones.get(sesion).comprarEntradasRecomendadas(butacas);
+        sesiones.get(sesion - 1).comprarEntradasRecomendadas(butacas);
 
     }//comprarEntradasRecomendadas
 

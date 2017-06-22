@@ -25,15 +25,15 @@ public class Cine {
     }//Constructor Cine
 
     public void comprarEntrada (int sala, int sesion, int fila, int columna){ //Funcion para comprar una entrada
-    	this.salas[sala-1].comprarEntrada(sesion-1, fila, columna);
+    	this.salas[sala-1].comprarEntrada(sesion, fila, columna);
     }//comprarEntrada
 
     public int getIdEntrada (int sala, int sesion, int fila, int columna){ //Funcion que devuelve el id de la entrada
-    	return this.salas[sala-1].getIdEntrada(sesion-1, fila, columna);
+    	return this.salas[sala-1].getIdEntrada(sesion, fila, columna);
     }//getIdEntrada
 
     public char[][] getEstadoSesion (int sala, int sesion){ //Funcion que devuelve una matriz que representa el estado de la sesion
-        return this.salas[sala-1].getEstadoSesion(sesion-1);
+        return this.salas[sala-1].getEstadoSesion(sesion);
 
     }//getEstadoSesion
 
@@ -51,7 +51,7 @@ public class Cine {
     }//getHorasDeSesionesDeSala
 
     public String recogerEntradas (int id, int sala, int sesion){ //Funcion que devuelve la informacion de una entrada
-        if (this.salas[sala-1].recogerEntradas(id, sesion-1) == null){
+        if (this.salas[sala-1].recogerEntradas(id, sesion) == null){
             return null;
         }
         else {
@@ -60,16 +60,16 @@ public class Cine {
     }//recogerEntradas
 
     public int getButacasDisponiblesSesion (int sala, int sesion){ //Funcion que devuelve el numero de butacas disponibles en una sesion
-    	return this.salas[sala-1].getButacasDisponiblesSesion(sesion-1) ;
+    	return this.salas[sala-1].getButacasDisponiblesSesion(sesion) ;
     }//getButacasDisponiblesSesion
 
     public ButacasContiguas recomendarButacasContiguas (int noButacas, int sala, int sesion){ //Funcion para recomendar butacas contiguas
-    	return this.salas[sala-1].recomendarButacasContiguas(noButacas, sesion-1);
+    	return this.salas[sala-1].recomendarButacasContiguas(noButacas, sesion);
 
     }//recomendarButacasContiguas
 
     public void comprarEntradasRecomendadas (int sala, int sesion, ButacasContiguas butacas){ //Funcion para comprar entradas recomendadas por la funcion recomendarButacasContiguas
-    	this.salas[sala-1].comprarEntradasRecomendadas(sesion-1, butacas);
+    	this.salas[sala-1].comprarEntradasRecomendadas(sesion, butacas);
     }//comprarEntradasRecomendadas
 
     public void incluirSesion (int sala, String horaSesion){ //Funcion para añadir una nueva sesion
