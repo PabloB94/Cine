@@ -81,7 +81,7 @@ public class Sala {
 
         }
         else{
-            return this.pelicula + "@" + this.sesiones.get(sesion).recogerEntradas(id);
+            return this.pelicula + "@" + this.sesiones.get(sesion - 1).recogerEntradas(id);
         }
 
     }//recogerEntradas
