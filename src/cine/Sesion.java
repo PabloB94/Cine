@@ -115,9 +115,9 @@ public class Sesion {
 
     private int[] buscarButacas (int noButacas, int filaActual){
         int libres = 0;
-        boolean asientosJuntos = true;
         int[] escogidas = new int[3];
         for (int columnaActual = estadoAsientos[0].length - 1; columnaActual >= 1 && libres != noButacas; columnaActual--){
+        	boolean asientosJuntos = true;
             if (estadoAsientos[filaActual - 1][columnaActual] == 0){
                 for (int asientosContiguos = 0; asientosContiguos < noButacas && asientosJuntos; asientosContiguos++){
                     if (columnaActual - asientosContiguos >= 0 && estadoAsientos[filaActual - 1][columnaActual - asientosContiguos] == 0){
