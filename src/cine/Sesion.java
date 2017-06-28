@@ -54,7 +54,7 @@ public class Sesion {
 
     public char[][] getEstadoSesion (){ //Funcion que devuelve una matriz que representa el estado de la sesion
         char[][] estadoSesion = new char[estadoAsientos.length][estadoAsientos[0].length];
-        for (int i = 0; i < estadoAsientos.length; i++){
+        for (int i = 0; i < estadoAsientos.length; i++){ //bucle para imprimir por pantalla el estado de la sesion mediante el uso de los caracteres # y O
             for (int j = 0; j < estadoAsientos[0].length; j++){
                 if (estadoAsientos[i][j] != 0){
                     estadoSesion[i][j] = '#';
@@ -90,9 +90,9 @@ public class Sesion {
 
     }//recogerEntradas
 
-    public ButacasContiguas recomendarButacasContiguas (int noButacas){ //Funcion que recomienda un número dado de butacas según las especificaciones dadas
+    public ButacasContiguas recomendarButacasContiguas (int noButacas){ //Funcion que recomienda un numero dado de butacas segun las especificaciones dadas
         boolean finalizado = false;//Variable para evitar recorrer ambos bucles innecesariamente
-        int[] butacasEscogidas = new int[3]; //Por las especificaciones del lenguaje, este array está por defecto inicializado con todos sus elementos a 0.
+        int[] butacasEscogidas = new int[3]; //Por las especificaciones del lenguaje, este array esta por defecto inicializado con todos sus elementos a 0.
         ButacasContiguas butacasContiguas = null;
         for (int filaActual = (estadoAsientos.length + 1) / 2 + 1; filaActual <= estadoAsientos.length  && !finalizado; filaActual++){//Bucle para buscar en la mitad posterior de la sala
             butacasEscogidas = buscarButacas(noButacas, filaActual);
@@ -113,7 +113,7 @@ public class Sesion {
         return butacasContiguas;
     }//recomendarButacasContiguas
 
-    private int[] buscarButacas (int noButacas, int filaActual){
+    private int[] buscarButacas (int noButacas, int filaActual){ //Funcion auxiliar para la funcion recomendarButacaContiguas
         int libres = 0;
         int[] escogidas = new int[3];
         for (int columnaActual = estadoAsientos[0].length - 1; columnaActual >= 1 && libres != noButacas; columnaActual--){
@@ -136,7 +136,7 @@ public class Sesion {
         return escogidas;
     }
 
-    public void comprarEntradasRecomendadas (ButacasContiguas butacas){ //Compra las entradas recomendadas por el método recomendarButacasContiguas
+    public void comprarEntradasRecomendadas (ButacasContiguas butacas){ //Compra las entradas recomendadas por el metodo recomendarButacasContiguas
         for (int i = 0; i < butacas.getNoButacas(); i++){
             estadoAsientos[butacas.getFila()-1][butacas.getColumna()-1+i] = sigIdCompra;
         }
@@ -146,11 +146,11 @@ public class Sesion {
 
     public boolean equals (Object sesion){ //Funcion para comparar dos sesiones
     	Sesion aux = null;
-    	if (sesion instanceof Sesion && sesion != null){
+    	if (sesion instanceof Sesion && sesion != null){ //condición para la comparacion de dos sesiones
     		aux = (Sesion) sesion;
     		return this.getHora().equals(aux.getHora());
-    	}else{
-    		return false;
+    	}else{ //si no se cumple la condicion, devuelve falso
+    		return false; 
     	}
     } //equals
 }//Clase Sesion
