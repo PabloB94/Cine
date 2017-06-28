@@ -20,11 +20,11 @@ public class Sala {
     private int filas;
     private int columnas;
 
-    public Sala (String pelicula, String[] horasSesiones, int filas, int columnas){
-
+    public Sala (String pelicula, String[] horasSesiones, int filas, int columnas){//Constructor de la clase sesion
+    	//Inicializacion del recurso
         this.pelicula = pelicula;
         this.sesiones = new ArrayList<Sesion>();        
-        for (int i = 0; i < horasSesiones.length; i++){
+        for (int i = 0; i < horasSesiones.length; i++){//Bucle que ordena las sesiones de la mas temprana a la mas tardia
         	int posicion = 0;
             Sesion sesion = new Sesion(horasSesiones[i], filas, columnas);
             for (int j = 0; sesiones.size() > j && j < sesiones.size(); j++){
@@ -45,7 +45,7 @@ public class Sala {
     	}
     }//comprarEntrada
 
-    public int getIdEntrada (int sesion, int fila, int columna){ //Funcion que devuelve el id de la entrada
+    public int getIdEntrada (int sesion, int fila, int columna){ //Funcion que devuelve el id de la entrada seleccionada
     	if(sesiones.size() > sesion - 1){
     		return sesiones.get(sesion - 1).getIdEntrada(fila, columna);
     	}else{
@@ -70,12 +70,12 @@ public class Sala {
 
     }//getEstadoSesion
 
-    public String getPelicula (){ //Funcion que devuelve las peliculas que hay en el cine
+    public String getPelicula (){ //Funcion que devuelve la pelicula que se proyecta en la sala
         return pelicula;
 
     }//getPelicula
 
-    public String recogerEntradas (int id, int sesion){ //Funcion que devuelve la informacion de una entrada
+    public String recogerEntradas (int id, int sesion){ //Funcion que devuelve la informacion de una entrada para un id dado
         if (this.sesiones.get(sesion - 1).recogerEntradas(id) == null){
             return null;
 
