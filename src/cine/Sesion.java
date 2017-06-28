@@ -54,7 +54,9 @@ public class Sesion {
 
     public char[][] getEstadoSesion (){ //Funcion que devuelve una matriz que representa el estado de la sesion
         char[][] estadoSesion = new char[estadoAsientos.length][estadoAsientos[0].length];
-        for (int i = 0; i < estadoAsientos.length; i++){ //bucle para imprimir por pantalla el estado de la sesion mediante el uso de los caracteres # y O
+        //bucle para crear una matriz de caracteres con el estado de la sesion mediante el uso de # y O
+        //para indicar asientos ocupados y libres respectivamente
+        for (int i = 0; i < estadoAsientos.length; i++){ 
             for (int j = 0; j < estadoAsientos[0].length; j++){
                 if (estadoAsientos[i][j] != 0){
                     estadoSesion[i][j] = '#';
@@ -146,10 +148,10 @@ public class Sesion {
 
     public boolean equals (Object sesion){ //Funcion para comparar dos sesiones
     	Sesion aux = null;
-    	if (sesion instanceof Sesion && sesion != null){ //condición para la comparacion de dos sesiones
+    	if (sesion instanceof Sesion && sesion != null){ //Comprueba que el objeto pasado como parametro es una sesion
     		aux = (Sesion) sesion;
     		return this.getHora().equals(aux.getHora());
-    	}else{ //si no se cumple la condicion, devuelve falso
+    	}else{ //si no es una sesion, devuelve falso
     		return false; 
     	}
     } //equals
